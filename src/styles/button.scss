@@ -1,0 +1,30 @@
+.button {
+    margin-top: 64px;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: 500;
+    background: #835afd;
+    padding: 0 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+
+    transition: filter 0.2s;
+    img {
+        margin-right: 8px;
+    }
+// Interessante (Caso o  boitão não esteja desabilitado, permite que o hover seja ativado)
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
+        cursor: pointer;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
