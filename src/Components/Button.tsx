@@ -14,6 +14,6 @@ export function Button(props: ButtonProps){
     //     console.log(counter);
     // }
     return (
-        <button className="button" {...props} />
+        <button className="button" {...props} /> //{...props} => Pega todos os parâmetros passados na função, sem precisar reescrever
     )
 }

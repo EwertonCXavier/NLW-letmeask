@@ -1,18 +1,24 @@
 import {Link} from 'react-router-dom';
+import {Button} from '../Components/Button';
+import { useAuth } from '../Hooks/useAuth';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
-import googleIconImg from '../assets/images/google-icon.svg';
-
-import {Button} from '../Components/Button';
-
-//  webpack (snowpack, vite, ..);
-// Module Bundler -> 
 
 import '../styles/auth.scss'
 
+// import {TextContext} from '../App';
+//  webpack (snowpack, vite, ..);
+// Module Bundler -> 
+
 export function NewRoom() {
 
+    //const {value, setValue} = useContext(TextContext);
+    const {user} = useAuth();
+    
+
+    // Verificar a autenticação do login nessa página
+    // Contextos => Formas de compartilhar informações entre dois ou mais objetos no  React
     return (
         <div id="page-auth">
             <aside>
@@ -23,6 +29,7 @@ export function NewRoom() {
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="letmeask" />
+                    {/* <h1>{user?.name} </h1> */}
                     <h2>Criar uma nova sala</h2>
                     <form>
                         <input

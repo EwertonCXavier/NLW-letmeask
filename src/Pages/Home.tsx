@@ -1,28 +1,28 @@
 import {useHistory} from 'react-router-dom';
+import { useAuth } from '../Hooks/useAuth';
+import {Button} from '../Components/Button';
 
-import {firebase, auth} from '../Services/firebase'
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
-import {Button} from '../Components/Button';
+import '../styles/auth.scss'
 
+// import {TextContext} from '../App';
+// import {useContext} from 'react';
 //  webpack (snowpack, vite, ..);
 // Module Bundler -> 
 
-import '../styles/auth.scss'
-
 export function Home() {
     const history = useHistory();
+    // const {value, setValue} = useContext(TextContext);
+    const {user, signInWithGoogle} = useAuth();
 
-
-
-    function handleCreateRoom() {
-        const provider = new firebase.auth.GoogleAuthProvider(); // Permite instanciar uma autenticação via Google no sistema
-        auth.signInWithPopup(provider).then(result => {   //Abre um popup do Gmail
-            console.log(result);
-        })
-        //history.push('/rooms/new');
+    async function handleCreateRoom() {
+        if(!user){  // Se o usuário não estiver autenticado, faz o login
+            await signInWithGoogle();
+        }
+        history.push('/rooms/new'); // Caso esteja, acessa a rota
     }
     return (
         <div id="page-auth">
