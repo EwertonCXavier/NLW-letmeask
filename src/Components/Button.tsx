@@ -6,7 +6,7 @@ import '../styles/button.scss';
 type ButtonProps =  ButtonHTMLAttributes<HTMLButtonElement> //Define as proprioedades do meu botão como globais do react, sem precisar redeclarar
 
 
-export function Button(props: ButtonProps){
+export function Button(props: ButtonProps){ 
     // const [counter, setCounter] = useState(0);
 
     // function handleClick() {
@@ -15,5 +15,6 @@ export function Button(props: ButtonProps){
     // }
     return (
         <button className="button" {...props} /> //{...props} => Pega todos os parâmetros passados na função, sem precisar reescrever
+        // spread operator
     )
 }
