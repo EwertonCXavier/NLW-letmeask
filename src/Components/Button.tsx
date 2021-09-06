@@ -3,10 +3,14 @@ import {ButtonHTMLAttributes} from 'react'
 
 import '../styles/button.scss';
 
-type ButtonProps =  ButtonHTMLAttributes<HTMLButtonElement> //Define as proprioedades do meu botão como globais do react, sem precisar redeclarar
+type ButtonProps =  ButtonHTMLAttributes<HTMLButtonElement>  & {
+    isOutlined?: boolean
 
 
-export function Button(props: ButtonProps){ 
+}//Define as proprioedades do meu botão como globais do react, sem precisar redeclarar
+
+
+export function Button({isOutlined = false, ...props}: ButtonProps){  // rest operator 
     // const [counter, setCounter] = useState(0);
 
     // function handleClick() {
@@ -14,7 +18,8 @@ export function Button(props: ButtonProps){
     //     console.log(counter);
     // }
     return (
-        <button className="button" {...props} /> //{...props} => Pega todos os parâmetros passados na função, sem precisar reescrever
+        <button
+        className={`button ${isOutlined && 'outlined'}`} {...props} /> //{...props} => Pega todos os parâmetros passados na função, sem precisar reescrever
         // spread operator
     )
 }
