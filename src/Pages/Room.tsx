@@ -10,18 +10,22 @@ import {useState, FormEvent, useEffect} from 'react';
 import {useAuth} from '../Hooks/useAuth';
 import {useRoom} from '../Hooks/useRoom';
 import {useParams} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+
+
 
 type RoomParams = {
     id: string;
 }
 
 export function Room() {
-    const {user} = useAuth();
     const params = useParams<RoomParams>();
     const roomId = params.id;
     const [newQuestion, setNewQuestion] = useState('');
     const {title, questions} = useRoom(roomId);
-    
+    const {user, signInWithGoogle} = useAuth();
+    const history = useHistory();
+
 
     async function handleSendQuestion(event: FormEvent) {
         event.preventDefault(); // Não recarregar a tela
@@ -47,6 +51,13 @@ export function Room() {
         await database.ref(`rooms/${roomId}/questions`).push(question);
     }
 
+
+    async function handleLogInNewUser() {
+         // Se o usuário não estiver autenticado, faz o login
+        await signInWithGoogle();
+
+        return;
+    }
 
     async function handleLikeQuestions(questionId: string, likeId: string | undefined){
         if(likeId) {
@@ -88,7 +99,7 @@ export function Room() {
                             <span>{user.name}</span>
                         </div>
                         ) : (
-                            <span>Para enviar uma pergunta, <button>faça seu login</button></span>
+                            <span>Para enviar uma pergunta, <button onClick={handleLogInNewUser}>faça seu login</button></span>
                         )}
                         
                         <Button type="submit" disabled={!user}>Enviar pergunta</Button>

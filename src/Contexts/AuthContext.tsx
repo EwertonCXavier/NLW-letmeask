@@ -44,7 +44,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         }
         }
       })
-    }, [user]); // Primeiro argumento é a lógica a ser desenvolvida, o segundo, quando deve ocorrer (que variável deve ser monitorada dentro do array)
+    }, []); // Primeiro argumento é a lógica a ser desenvolvida, o segundo, quando deve ocorrer (que variável deve ser monitorada dentro do array)
     // Se vazio, ele roda apenas uma vez
   
     async function signInWithGoogle () {
@@ -54,6 +54,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       console.log(result);
   
       if(result.user) {
+
+        console.log(result.user);
         const { displayName, photoURL, uid} = result.user;
   
         if(!displayName || !photoURL) {
