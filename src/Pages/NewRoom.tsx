@@ -61,6 +61,7 @@ export function NewRoom() {
                         onChange = { event => {
                             setNewRoom(event.target.value);
                         }}
+                        value={newRoom}
                         />
                         <Button type="submit">Entrar na sala</Button>
                     </form>
