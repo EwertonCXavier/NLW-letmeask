@@ -49,6 +49,7 @@ export function Room() {
         }
 
         await database.ref(`rooms/${roomId}/questions`).push(question);
+        setNewQuestion('');
     }
 
 
@@ -90,6 +91,7 @@ export function Room() {
                      <textarea 
                         placeholder="O que deseja perguntar?"
                         onChange = { (e)  => setNewQuestion(e.target.value)}
+                        value={newQuestion}
                      />
                     <div className="form-footer">
                         {user ? 
